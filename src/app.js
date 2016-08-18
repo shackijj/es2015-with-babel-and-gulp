@@ -1,4 +1,32 @@
-import FlashMessage from "./flash-message";
+import expect from "expect";
 
-let flash = new FlashMessage("Gulp, Babel and Browserify");
-flash.display();
+let counter = (state, action) => {
+    switch(action.type) {
+        case 'INCREMENT':
+            return state + 1;
+        case 'DECREMENT':
+            return state - 1 ;
+        default:
+            return state; 
+    }
+}
+
+expect(
+    counter(0, { type: 'INCREMENT'})
+).toEqual(1);
+
+
+expect(
+    counter(1, { type: 'INCREMENT'})
+).toEqual(2);
+
+expect(
+    counter(2, { type: 'DECREMENT'})
+).toEqual(1);
+
+
+expect(
+    counter(1, { type: 'DECREMENT'})
+).toEqual(0);
+
+console.log("Tests passed!");
